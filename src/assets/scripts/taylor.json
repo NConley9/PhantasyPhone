@@ -1,0 +1,22 @@
+{
+  "day002": [
+    { "type": "message", "sender": "taylor", "content": "Hey, is this the new intern?" },
+    { "type": "message", "sender": "user", "content": "Yes, that's me! Who's this?" },
+    { "type": "message", "sender": "taylor", "content": "I'm Taylor from HR. Welcome aboard!" },
+    { "type": "message", "sender": "user", "content": "Thanks! Excited to be here." },
+    { "type": "message", "sender": "taylor", "content": "Great! Let me know if you need anything." },
+    { "type": "command", "action": "advanceDay", "value": 1 }
+  ],
+  "day004": [
+    { "type": "message", "sender": "taylor", "content": "Hi there! How's your first week going?" },
+    { "type": "message", "sender": "user", "content": "It's going well, thanks for asking!" },
+    { "type": "message", "sender": "taylor", "content": "Glad to hear it! I wanted to check in and see if you have any questions." },
+    { "type": "message", "sender": "user", "content": "Actually, I was wondering about the company benefits." },
+    { "type": "message", "sender": "taylor", "content": "Of course! I'll send you a document with all the details." },
+    { "type": "image", "sender": "taylor", "content": "benefits.jpg" },
+    { "type": "unlock", "item": "wallpaper", "id": "benefits.jpg" },
+    { "type": "message", "sender": "user", "content": "This is very helpful, thank you!" },
+    { "type": "message", "sender": "taylor", "content": "You're welcome! Let me know if you need anything else. 😊" },
+    { "type": "command", "action": "advanceDay", "value": 1 }
+  ]
+}

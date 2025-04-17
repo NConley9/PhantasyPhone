@@ -1,0 +1,21 @@
+{day002}
+<taylor>Hey, is this the new intern?
+<user>Yes, that's me! Who's this?
+<taylor>I'm Taylor from HR. Welcome aboard!
+<user>Thanks! Excited to be here.
+<taylor>Great! Let me know if you need anything.
+{end}
+{advanceDay-1}
+
+{day004}
+<taylor>Hi there! How's your first week going?
+<user>It's going well, thanks for asking!
+<taylor>Glad to hear it! I wanted to check in and see if you have any questions.
+<user>Actually, I was wondering about the company benefits.
+<taylor>Of course! I'll send you a document with all the details.
+<taylor>[benefits.jpg]
+{unlockWallpaper benefits.jpg}
+<user>This is very helpful, thank you!
+<taylor>You're welcome! Let me know if you need anything else. 😊
+{end}
+{advanceDay-1}

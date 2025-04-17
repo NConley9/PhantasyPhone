@@ -1,0 +1,29 @@
+{
+  "day001": [
+    { "type": "message", "sender": "alex", "content": "Hey there! Just got your number from the group chat." },
+    { "type": "message", "sender": "user", "content": "Oh hi! Nice to meet you!" },
+    { "type": "message", "sender": "alex", "content": "Same here! Looking forward to working together on the project. 😊" },
+    { "type": "message", "sender": "user", "content": "Me too! When do we start?" },
+    { "type": "message", "sender": "alex", "content": "Tomorrow! I'll send you the details." },
+    { "type": "command", "action": "advanceDay", "value": 1 }
+  ],
+  "day002": [
+    { "type": "message", "sender": "alex", "content": "Good morning! Ready for our first day?" },
+    { "type": "message", "sender": "user", "content": "Absolutely! What's the plan?" },
+    { "type": "message", "sender": "alex", "content": "I'll send you a picture of our schedule." },
+    { "type": "image", "sender": "alex", "content": "schedule.jpg" },
+    { "type": "unlock", "item": "wallpaper", "id": "schedule.jpg" },
+    { "type": "message", "sender": "user", "content": "Thanks! This looks great." },
+    { "type": "message", "sender": "alex", "content": "No problem! Let's meet at the coffee shop at 9am." },
+    { "type": "message", "sender": "user", "content": "I'll be there!" },
+    { "type": "command", "action": "advanceDay", "value": 1 }
+  ],
+  "day003": [
+    { "type": "message", "sender": "alex", "content": "Hey, how was your first day?" },
+    { "type": "message", "sender": "user", "content": "It was great! I learned a lot." },
+    { "type": "message", "sender": "alex", "content": "Awesome! You're a quick learner." },
+    { "type": "message", "sender": "user", "content": "Thanks! I'm excited for tomorrow." },
+    { "type": "message", "sender": "alex", "content": "Me too! Get some rest, we have a big day ahead." },
+    { "type": "command", "action": "advanceDay", "value": 1 }
+  ]
+}

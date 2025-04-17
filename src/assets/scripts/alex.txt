@@ -1,0 +1,29 @@
+{day001}
+<alex>Hey there! Just got your number from the group chat.
+<user>Oh hi! Nice to meet you!
+<alex>Same here! Looking forward to working together on the project. 😊
+<user>Me too! When do we start?
+<alex>Tomorrow! I'll send you the details.
+{end}
+{advanceDay-1}
+
+{day002}
+<alex>Good morning! Ready for our first day?
+<user>Absolutely! What's the plan?
+<alex>I'll send you a picture of our schedule.
+<alex>[schedule.jpg]
+{unlockWallpaper schedule.jpg}
+<user>Thanks! This looks great.
+<alex>No problem! Let's meet at the coffee shop at 9am.
+<user>I'll be there!
+{end}
+{advanceDay-1}
+
+{day003}
+<alex>Hey, how was your first day?
+<user>It was great! I learned a lot.
+<alex>Awesome! You're a quick learner.
+<user>Thanks! I'm excited for tomorrow.
+<alex>Me too! Get some rest, we have a big day ahead.
+{end}
+{advanceDay-1}
