@@ -29,7 +29,8 @@ const gameState = {
         { type: 'message', sender: 'user', content: 'Oh hi! Nice to meet you!' },
         { type: 'message', sender: 'alex', content: 'Same here! Looking forward to working together on the project. 😊' },
         { type: 'message', sender: 'user', content: 'Me too! When do we start?' },
-        { type: 'message', sender: 'alex', content: 'Tomorrow! I\'ll send you the details.' }
+        { type: 'message', sender: 'alex', content: 'Tomorrow! I\'ll send you the details.' },
+        { type: 'command', action: 'advanceDay', value: 1 }
       ],
       'day002': [
         { type: 'message', sender: 'alex', content: 'Good morning! Ready for our first day?' },
@@ -57,7 +58,8 @@ const gameState = {
         { type: 'message', sender: 'user', content: 'Yes, that\'s me! Who\'s this?' },
         { type: 'message', sender: 'taylor', content: 'I\'m Taylor from HR. Welcome aboard!' },
         { type: 'message', sender: 'user', content: 'Thanks! Excited to be here.' },
-        { type: 'message', sender: 'taylor', content: 'Great! Let me know if you need anything.' }
+        { type: 'message', sender: 'taylor', content: 'Great! Let me know if you need anything.' },
+        { type: 'command', action: 'advanceDay', value: 1 }
       ],
       'day004': [
         { type: 'message', sender: 'taylor', content: 'Hi there! How\'s your first week going?' },
@@ -140,7 +142,8 @@ function checkForNewMessages() {
     // Only show characters whose first day has arrived
     if (currentDay >= char.firstDay) {
       // Check if the character has messages for the current day
-      const hasNewMessage = hardcodedScripts[char.id] && hardcodedScripts[char.id][dayKey];
+      // Use gameState.scripts instead of hardcodedScripts
+      const hasNewMessage = gameState.scripts[char.id] && gameState.scripts[char.id][dayKey];
 
       if (hasNewMessage) {
         newNotifications.push({

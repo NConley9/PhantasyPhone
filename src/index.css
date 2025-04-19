@@ -1,14 +1,56 @@
 :root {
+  /* Color Palette */
   --primary-color: #007aff;
   --secondary-color: #34c759;
+  --accent-color: #ff3b30;
+  --success-color: #34c759;
+  --warning-color: #ff9500;
+  --error-color: #ff3b30;
+
+  /* Background Colors */
   --background-color: #f2f2f7;
+  --card-background: #ffffff;
+
+  /* Text Colors */
   --text-color: #000000;
+  --text-color-light: #ffffff;
+  --text-color-secondary: #8e8e93;
+
+  /* Gray Scale */
   --light-gray: #e5e5ea;
   --medium-gray: #c7c7cc;
   --dark-gray: #8e8e93;
+
+  /* Message Colors */
   --user-message-color: #e5e5ea;
   --character-message-color: #34c759;
   --notification-color: #ff3b30;
+
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+
+  /* Border Radius */
+  --border-radius-sm: 5px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 20px;
+  --border-radius-xl: 30px;
+
+  /* Font Sizes */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 36px;
+
+  /* Animation Durations */
+  --animation-speed-fast: 0.2s;
+  --animation-speed-normal: 0.3s;
+  --animation-speed-slow: 0.5s;
 }
 
 * {
@@ -106,12 +148,46 @@ body {
   padding: 0 15px;
 }
 
+.screen {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
 .fade-transition {
   animation: fadeInOut 1s ease-in-out;
+}
+
+.slide-in {
+  animation: slideIn 0.3s forwards;
+}
+
+.slide-out {
+  animation: slideOut 0.3s forwards;
 }
 
 @keyframes fadeInOut {
   0% { opacity: 1; }
   50% { opacity: 0; }
   100% { opacity: 1; }
+}
+
+@keyframes typingAnimation {
+  0% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.4; transform: scale(1); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
 }

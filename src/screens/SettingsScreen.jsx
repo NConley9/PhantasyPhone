@@ -1,35 +1,28 @@
 import React, { useContext } from 'react';
 import { GameContext } from '../context/GameContext';
-import BackButton from '../components/BackButton';
+import { SettingsContext } from '../context/SettingsContext';
+import BackButton from '../components/ui/BackButton';
 
 const SettingsScreen = () => {
-  const { 
-    unlockedWallpapers, 
-    currentWallpaper, 
-    changeWallpaper,
+  const { advanceDay } = useContext(GameContext);
+  const {
+    unlockedWallpapers,
+    currentWallpaper,
     playerAvatar,
-    changePlayerAvatar,
-    advanceDay
-  } = useContext(GameContext);
-  
-  // In a real implementation, these would be loaded from files
-  const wallpapers = [
-    { id: 'default.jpg', name: 'Default' },
-    { id: 'schedule.jpg', name: 'Schedule' }
-  ];
-  
-  const avatars = [
-    { id: 'default-avatar.jpg', name: 'Default' }
-  ];
-  
+    wallpapers,
+    avatars,
+    changeWallpaper,
+    changePlayerAvatar
+  } = useContext(SettingsContext);
+
   return (
     <div className="settings-screen">
       <BackButton to="/" />
-      
+
       <div className="header">
         Settings
       </div>
-      
+
       <div className="content">
         <div className="settings-section" style={{
           margin: '20px 0',
@@ -44,7 +37,7 @@ const SettingsScreen = () => {
           }}>
             Wallpaper
           </div>
-          
+
           <div className="wallpaper-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -54,9 +47,9 @@ const SettingsScreen = () => {
             {wallpapers.map(wallpaper => {
               const isUnlocked = unlockedWallpapers.includes(wallpaper.id);
               const isSelected = currentWallpaper === wallpaper.id;
-              
+
               return (
-                <div 
+                <div
                   key={wallpaper.id}
                   className={`wallpaper-item ${isUnlocked ? 'unlocked' : 'locked'} ${isSelected ? 'selected' : ''}`}
                   onClick={() => isUnlocked && changeWallpaper(wallpaper.id)}
@@ -85,7 +78,7 @@ const SettingsScreen = () => {
                   }}>
                     {wallpaper.name}
                   </div>
-                  
+
                   {!isUnlocked && (
                     <div style={{
                       position: 'absolute',
@@ -102,7 +95,7 @@ const SettingsScreen = () => {
             })}
           </div>
         </div>
-        
+
         <div className="settings-section" style={{
           margin: '20px 0',
           backgroundColor: 'white',
@@ -116,7 +109,7 @@ const SettingsScreen = () => {
           }}>
             Player Avatar
           </div>
-          
+
           <div className="avatar-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
@@ -125,9 +118,9 @@ const SettingsScreen = () => {
           }}>
             {avatars.map(avatar => {
               const isSelected = playerAvatar === avatar.id;
-              
+
               return (
-                <div 
+                <div
                   key={avatar.id}
                   className={`avatar-item ${isSelected ? 'selected' : ''}`}
                   onClick={() => changePlayerAvatar(avatar.id)}
@@ -149,7 +142,7 @@ const SettingsScreen = () => {
             })}
           </div>
         </div>
-        
+
         {/* Debug section - would be removed in production */}
         <div className="settings-section" style={{
           margin: '20px 0',
@@ -164,9 +157,9 @@ const SettingsScreen = () => {
           }}>
             Debug
           </div>
-          
+
           <div style={{ padding: '15px' }}>
-            <button 
+            <button
               onClick={() => advanceDay(1)}
               style={{
                 padding: '10px 15px',
@@ -180,8 +173,8 @@ const SettingsScreen = () => {
             >
               Advance 1 Day
             </button>
-            
-            <button 
+
+            <button
               onClick={() => advanceDay(7)}
               style={{
                 padding: '10px 15px',
