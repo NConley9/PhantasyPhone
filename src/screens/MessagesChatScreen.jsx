@@ -42,12 +42,17 @@ const MessagesChatScreen = () => {
 
     console.log('Found character:', foundCharacter);
     setCharacter(foundCharacter);
-    initializeChat(characterId);
+    
+    // Initialize chat with a small delay to ensure state is updated
+    setTimeout(() => {
+      initializeChat(characterId);
+    }, 100);
   }, [characterId, characters, navigate, initializeChat]);
 
   // Scroll to bottom when messages change or typing status changes
   useEffect(() => {
     console.log('MessagesChatScreen: Messages changed, scrolling to bottom');
+    console.log('Current displayed messages:', displayedMessages);
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [displayedMessages, isTyping]);
 
@@ -65,7 +70,11 @@ const MessagesChatScreen = () => {
   console.log('MessagesChatScreen: Rendering with displayedMessages:', displayedMessages);
 
   return (
-    <div className="messages-chat-screen">
+    <div className="messages-chat-screen" style={{ 
+      display: 'flex', 
+      flexDirection: 'column',
+      height: '100%'
+    }}>
       <BackButton to="/messages" />
 
       <CharacterHeader character={character} />
@@ -74,7 +83,7 @@ const MessagesChatScreen = () => {
         backgroundColor: '#f0f0f0',
         display: 'flex',
         flexDirection: 'column',
-        height: 'calc(100% - 100px)',
+        flex: 1,
         overflow: 'hidden'
       }}>
         <div className="messages-container" style={{ 
@@ -84,7 +93,7 @@ const MessagesChatScreen = () => {
           display: 'flex',
           flexDirection: 'column'
         }}>
-          {displayedMessages.length > 0 ? (
+          {displayedMessages && displayedMessages.length > 0 ? (
             <>
               {displayedMessages.map((message, index) => {
                 console.log('Rendering message:', message);
@@ -113,6 +122,8 @@ const MessagesChatScreen = () => {
 
               {isTyping && <TypingIndicator character={character} />}
               {conversationEnded && <OfflineMessage character={character} />}
+              
+              <div ref={messagesEndRef} style={{ height: '1px' }} />
             </>
           ) : (
             <div className="no-messages-placeholder" style={{
@@ -125,8 +136,6 @@ const MessagesChatScreen = () => {
               No messages to display
             </div>
           )}
-
-          <div ref={messagesEndRef} />
         </div>
 
         <MessageInput />

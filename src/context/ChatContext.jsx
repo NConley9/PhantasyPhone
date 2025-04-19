@@ -14,9 +14,6 @@ export const ChatProvider = ({ children }) => {
   const [waitingForUserInput, setWaitingForUserInput] = useState(false);
   const [conversationEnded, setConversationEnded] = useState(false);
   
-  // Refs for functions to avoid circular dependencies
-  const processNextMessageRef = useRef(null);
-  
   // Process the next message in the sequence
   const processNextMessage = useCallback((messages, index) => {
     console.log('Processing next message at index:', index);
@@ -50,15 +47,10 @@ export const ChatProvider = ({ children }) => {
       
       // Process the next message after a delay
       setTimeout(() => {
-        processNextMessageRef.current(messages, index + 1);
+        processNextMessage(messages, index + 1);
       }, 1000);
     }, typingTime);
   }, []);
-  
-  // Update the ref when the function changes
-  useEffect(() => {
-    processNextMessageRef.current = processNextMessage;
-  }, [processNextMessage]);
   
   // Start displaying messages in sequence
   const startMessageSequence = useCallback((messages) => {
@@ -76,13 +68,11 @@ export const ChatProvider = ({ children }) => {
         
         // Process the next message after a delay
         setTimeout(() => {
-          if (processNextMessageRef.current) {
-            processNextMessageRef.current(messages, 1);
-          }
+          processNextMessage(messages, 1);
         }, 1000);
       }
     }
-  }, []);
+  }, [processNextMessage]);
   
   // Initialize chat with a character
   const initializeChat = useCallback((characterId) => {
@@ -104,7 +94,7 @@ export const ChatProvider = ({ children }) => {
         const dayKey = `day${day.toString().padStart(3, '0')}`;
         console.log('Checking day:', dayKey);
         if (scripts[characterId][dayKey]) {
-          console.log('Found messages for day:', dayKey, scripts[characterId][dayKey]);
+          console.log('Found messages for day:', dayKey, scripts[characterId][dayKey].length);
           allMessages.push(...scripts[characterId][dayKey]);
         }
       }
@@ -112,7 +102,7 @@ export const ChatProvider = ({ children }) => {
       console.warn('No scripts found for character:', characterId);
     }
     
-    console.log('All messages collected:', allMessages);
+    console.log('All messages collected:', allMessages.length);
     
     // Reset state
     setCurrentMessages(allMessages);
@@ -124,9 +114,10 @@ export const ChatProvider = ({ children }) => {
     // Start displaying messages
     if (allMessages.length > 0) {
       console.log('Starting message sequence with', allMessages.length, 'messages');
+      // Use a timeout to ensure state updates have completed
       setTimeout(() => {
         startMessageSequence(allMessages);
-      }, 100);
+      }, 300);
     } else {
       console.warn('No messages to display');
     }
@@ -162,11 +153,9 @@ export const ChatProvider = ({ children }) => {
     
     // Process the next message after a delay
     setTimeout(() => {
-      if (processNextMessageRef.current) {
-        processNextMessageRef.current(currentMessages, currentIndex);
-      }
+      processNextMessage(currentMessages, currentIndex);
     }, 1000);
-  }, [waitingForUserInput, displayedMessages, currentMessages]);
+  }, [waitingForUserInput, displayedMessages, currentMessages, processNextMessage]);
   
   return (
     <ChatContext.Provider

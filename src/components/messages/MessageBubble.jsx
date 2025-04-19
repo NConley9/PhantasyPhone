@@ -5,6 +5,11 @@ const MessageBubble = ({ message, character, isUser, onImageClick }) => {
   console.log('isUser:', isUser);
   console.log('character:', character);
 
+  if (!message) {
+    console.error('MessageBubble received null or undefined message');
+    return null;
+  }
+
   if (message.type === 'message') {
     return (
       <div 
@@ -12,7 +17,8 @@ const MessageBubble = ({ message, character, isUser, onImageClick }) => {
         style={{
           display: 'flex',
           justifyContent: isUser ? 'flex-end' : 'flex-start',
-          marginBottom: '10px'
+          marginBottom: '10px',
+          width: '100%'
         }}
       >
         {!isUser && (
@@ -36,7 +42,8 @@ const MessageBubble = ({ message, character, isUser, onImageClick }) => {
           padding: '10px 15px',
           borderRadius: '18px',
           backgroundColor: isUser ? 'var(--user-message-color)' : 'var(--character-message-color)',
-          color: isUser ? 'black' : 'white'
+          color: isUser ? 'black' : 'white',
+          wordBreak: 'break-word'
         }}>
           {message.content}
         </div>
@@ -66,7 +73,8 @@ const MessageBubble = ({ message, character, isUser, onImageClick }) => {
         style={{
           display: 'flex',
           justifyContent: isUser ? 'flex-end' : 'flex-start',
-          marginBottom: '10px'
+          marginBottom: '10px',
+          width: '100%'
         }}
       >
         {!isUser && (
@@ -101,7 +109,9 @@ const MessageBubble = ({ message, character, isUser, onImageClick }) => {
             backgroundColor: 'var(--medium-gray)',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            padding: '10px',
+            textAlign: 'center'
           }}>
             [Image: {message.content}]
           </div>
@@ -127,6 +137,7 @@ const MessageBubble = ({ message, character, isUser, onImageClick }) => {
     );
   }
   
+  console.log('MessageBubble: Unhandled message type:', message.type);
   return null;
 };
 
