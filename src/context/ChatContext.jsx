@@ -113,6 +113,8 @@ export const ChatProvider = ({ children }) => {
     }
     
     console.log('All messages collected:', allMessages);
+    
+    // Reset state
     setCurrentMessages(allMessages);
     setDisplayedMessages([]);
     setIsTyping(false);
@@ -122,7 +124,9 @@ export const ChatProvider = ({ children }) => {
     // Start displaying messages
     if (allMessages.length > 0) {
       console.log('Starting message sequence with', allMessages.length, 'messages');
-      startMessageSequence(allMessages);
+      setTimeout(() => {
+        startMessageSequence(allMessages);
+      }, 100);
     } else {
       console.warn('No messages to display');
     }

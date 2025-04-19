@@ -30,18 +30,24 @@ const MessagesChatScreen = () => {
 
   // Find the character and initialize chat
   useEffect(() => {
+    console.log('MessagesChatScreen: Finding character with ID:', characterId);
+    console.log('Available characters:', characters);
+    
     const foundCharacter = characters.find(c => c.id === characterId);
     if (!foundCharacter) {
+      console.error('Character not found, navigating back to messages');
       navigate('/messages');
       return;
     }
 
+    console.log('Found character:', foundCharacter);
     setCharacter(foundCharacter);
     initializeChat(characterId);
   }, [characterId, characters, navigate, initializeChat]);
 
   // Scroll to bottom when messages change or typing status changes
   useEffect(() => {
+    console.log('MessagesChatScreen: Messages changed, scrolling to bottom');
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [displayedMessages, isTyping]);
 
@@ -52,8 +58,11 @@ const MessagesChatScreen = () => {
   };
 
   if (!character) {
+    console.log('MessagesChatScreen: Character not loaded yet');
     return <div>Loading...</div>;
   }
+
+  console.log('MessagesChatScreen: Rendering with displayedMessages:', displayedMessages);
 
   return (
     <div className="messages-chat-screen">
@@ -64,12 +73,21 @@ const MessagesChatScreen = () => {
       <div className="content" style={{
         backgroundColor: '#f0f0f0',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        height: 'calc(100% - 100px)',
+        overflow: 'hidden'
       }}>
-        <div className="messages-container" style={{ flex: 1, padding: '10px' }}>
+        <div className="messages-container" style={{ 
+          flex: 1, 
+          padding: '10px',
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
           {displayedMessages.length > 0 ? (
             <>
               {displayedMessages.map((message, index) => {
+                console.log('Rendering message:', message);
                 if (message.type === 'message' || message.type === 'image') {
                   const isUser = message.sender === 'user';
                   return (

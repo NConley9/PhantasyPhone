@@ -1,6 +1,10 @@
 import React from 'react';
 
 const MessageBubble = ({ message, character, isUser, onImageClick }) => {
+  console.log('Rendering MessageBubble with message:', message);
+  console.log('isUser:', isUser);
+  console.log('character:', character);
+
   if (message.type === 'message') {
     return (
       <div 
